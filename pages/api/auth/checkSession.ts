@@ -22,7 +22,7 @@ export default async function (req, res) {
       //client.get({path: "shop"}).then().catch(reason => console.log("reason", reason))
 
       const apiResponse = await client.get({ path: "shop" });
-      console.log("apiResponse to shop info is: ", apiResponse);
+      // console.log("apiResponse to shop info is: ", apiResponse);
       success = true;
     } catch (e) {
       console.log("error getting shop info. e is:", e);

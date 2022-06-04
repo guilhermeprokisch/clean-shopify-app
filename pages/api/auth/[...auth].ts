@@ -8,6 +8,5 @@ export default async function (req, res) {
     "/api/auth/callback",
     false
   );
-  console.log(authRoute);
   res.redirect(authRoute);
 }

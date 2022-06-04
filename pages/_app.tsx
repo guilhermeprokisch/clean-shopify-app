@@ -1,13 +1,13 @@
 import "../styles/globals.css";
-import EmbeddedApp from "@components/EmbeddedApp";
+import ShopifyEmbeddedApp from "@components/ShopifyEmbeddedApp";
 
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <EmbeddedApp>
+    <ShopifyEmbeddedApp>
       <Component {...pageProps} />
-    </EmbeddedApp>
+    </ShopifyEmbeddedApp>
   );
 }
 
