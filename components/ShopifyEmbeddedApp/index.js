@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import SessionProvider from '@components/SessionProvider';
+import SessionProvider from './providers/SessionProvider';
 
 export default function ShopifyEmbeddedApp({ children }) {
   const [host, setHost] = useState("");
