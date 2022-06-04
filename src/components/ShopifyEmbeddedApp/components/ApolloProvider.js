@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider as Provider } from "@apollo/client";
-import { fetch } from "@lib/app-bridge";
+import { fetch } from "@utils/app-bridge";
 import { useAppBridge } from "@shopify/app-bridge-react";
 
 export default function ApolloProvider({ children }) {

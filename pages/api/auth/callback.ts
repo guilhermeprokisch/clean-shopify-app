@@ -1,4 +1,4 @@
-import Shopify from "@lib/shopify";
+import Shopify from "@utils/shopify";
 
 export default async function (req, res) {
   const shopSession = await Shopify.Auth.validateAuthCallback(

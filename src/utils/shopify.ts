@@ -1,5 +1,5 @@
 import { Shopify, ApiVersion } from "@shopify/shopify-api";
-import RedisStore from "@lib/redis";
+import RedisStore from "@utils/redis";
 
 const sessionStorage = new RedisStore(process.env.REDIS_URL);
 const { SHOPIFY_API_KEY, SHOPIFY_API_SECRET, SCOPES, HOST } = process.env;
