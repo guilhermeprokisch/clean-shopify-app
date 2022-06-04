@@ -26,7 +26,7 @@ export default function ShopifyEmbeddedApp({ children }) {
   return (<>
     {host && <>
       <CustomPolarisForNextProvider>
-        <AppBridgeProvider config={{ apiKey: API_KEY, host, forceRedirect: true }}>
+        <AppBridgeProvider config={{ apiKey: API_KEY, host, forceRedirect: false }}>
           <SessionProvider>
             <RoutePropagator />
             <ApolloProvider>
