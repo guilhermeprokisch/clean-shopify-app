@@ -13,8 +13,6 @@ export default function SessionProvider({ children }) {
     myAxios
       .post(`/api/auth/checkSession?shop=${shop}`)
       .then(function(response) {
-        console.log("rep: ", response);
-
         if (response.data.status === "error") {
           console.log("response status is error, going to redirect to install screen");
           window.top.location.href = `/api/auth/shopify/login?shop=${shop}`;

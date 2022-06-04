@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
-import SessionProvider from './providers/SessionProvider';
+import { Provider as AppBridgeProvider } from "@shopify/app-bridge-react"
+import SessionProvider from './providers/SessionProvider'
+import RoutePropagator from './providers/RoutePropagator'
+import CustomPolarisForNextProvider from './providers/CustomPolarisForNextProvider'
 
 export default function ShopifyEmbeddedApp({ children }) {
+  const API_KEY = process.env.NEXT_PUBLIC_SHOPIFY_API_KEY;
   const [host, setHost] = useState("");
 
   useEffect(() => {
@@ -16,11 +20,18 @@ export default function ShopifyEmbeddedApp({ children }) {
     }
   }, [])
 
-  return <>
+  return (<>
     {host && <>
-      <SessionProvider>
-        {children}
-      </SessionProvider>
-    </>}
+      <CustomPolarisForNextProvider>
+        <AppBridgeProvider config={{ apiKey: API_KEY, host, forceRedirect: true }}>
+          <SessionProvider>
+            <RoutePropagator />
+            {children}
+          </SessionProvider>
+        </AppBridgeProvider>
+      </CustomPolarisForNextProvider>
+    </>
+    }
   </>
+  )
 }
