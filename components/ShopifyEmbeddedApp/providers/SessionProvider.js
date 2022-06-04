@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import axios from "axios";
 
 export default function SessionProvider({ children }) {
-  //const app = useAppBridge();
 
   useEffect(() => {
 

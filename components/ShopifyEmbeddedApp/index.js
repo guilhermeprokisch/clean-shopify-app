@@ -3,6 +3,8 @@ import { Provider as AppBridgeProvider } from "@shopify/app-bridge-react"
 import SessionProvider from './providers/SessionProvider'
 import RoutePropagator from './providers/RoutePropagator'
 import CustomPolarisForNextProvider from './providers/CustomPolarisForNextProvider'
+import ApolloProvider from './providers/ApolloProvider'
+import "@shopify/polaris/build/esm/styles.css"
 
 export default function ShopifyEmbeddedApp({ children }) {
   const API_KEY = process.env.NEXT_PUBLIC_SHOPIFY_API_KEY;
@@ -20,13 +22,16 @@ export default function ShopifyEmbeddedApp({ children }) {
     }
   }, [])
 
+
   return (<>
     {host && <>
       <CustomPolarisForNextProvider>
         <AppBridgeProvider config={{ apiKey: API_KEY, host, forceRedirect: true }}>
           <SessionProvider>
             <RoutePropagator />
-            {children}
+            <ApolloProvider>
+              {children}
+            </ApolloProvider>
           </SessionProvider>
         </AppBridgeProvider>
       </CustomPolarisForNextProvider>

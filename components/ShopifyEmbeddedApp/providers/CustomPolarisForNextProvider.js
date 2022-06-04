@@ -18,12 +18,12 @@ const CustomLinkComponent = ({
     );
   }
   return (
-    <Link href={url}>
+    <Link passHref href={url}>
       <button {...rest}>{children}</button>
     </Link>
   );
 };
 
-export default function PolarisProvider({ children }) {
+export default function CustomPolarisForNextProvider({ children }) {
   return <AppProvider i18n={translations} linkComponent={CustomLinkComponent}>{children}</AppProvider>
 }

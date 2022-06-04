@@ -1,21 +1,16 @@
-import { Shopify } from "@shopify/shopify-api";
+import { Shopify, ApiVersion } from "@shopify/shopify-api";
 import RedisStore from "@lib/redis";
 
 const sessionStorage = new RedisStore(process.env.REDIS_URL);
-
-const {
-  NEXT_PUBLIC_SHOPIFY_API_KEY,
-  SHOPIFY_API_SECRET,
-  SHOPIFY_API_SCOPES,
-  HOST,
-} = process.env;
+const { SHOPIFY_API_KEY, SHOPIFY_API_SECRET, SCOPES, HOST } = process.env;
 
 let context = {
-  API_KEY: NEXT_PUBLIC_SHOPIFY_API_KEY,
+  API_KEY: SHOPIFY_API_KEY,
   API_SECRET_KEY: SHOPIFY_API_SECRET,
-  SCOPES: SHOPIFY_API_SCOPES,
-  HOST_NAME: HOST,
+  SCOPES: SCOPES,
+  HOST_NAME: HOST.replace(/^https?:\/\//, ""),
   IS_EMBEDDED_APP: true,
+  API_VERSION: ApiVersion.April22,
   SESSION_STORAGE: new Shopify.Session.CustomSessionStorage(
     sessionStorage.storeCallback,
     sessionStorage.loadCallback,
