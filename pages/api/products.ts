@@ -1,4 +1,4 @@
-import Shopify from "@utils/shopify";
+import Shopify from "@services/shopify";
 
 export default async (req, res) => {
   // Provide HOST_NAME here just in case it was not provided by env variable

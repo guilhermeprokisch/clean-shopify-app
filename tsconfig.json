@@ -28,6 +28,15 @@
       ],
       "@utils/*": [
         "/src/utils/*"
+      ],
+      "@models/*": [
+        "/src/models/*"
+      ],
+      "@services/*": [
+        "/src/services/*"
+      ],
+      "@contexts/*": [
+        "/src/contexts/*"
       ]
     }
   },

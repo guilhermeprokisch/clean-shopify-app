@@ -1,4 +1,4 @@
-import RedisStore from "@utils/redis";
+import RedisStore from "@services/redis";
 import Shopify from "@shopify/shopify-api";
 
 export default async function (req, res) {

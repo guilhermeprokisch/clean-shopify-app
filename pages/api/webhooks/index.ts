@@ -1,4 +1,4 @@
-import Shopify from "@utils/shopify";
+import Shopify from "@services/shopify";
 
 // noinspection JSUnusedGlobalSymbols
 export default async function webhooks(req, res) {

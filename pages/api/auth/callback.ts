@@ -1,4 +1,4 @@
-import Shopify from "@utils/shopify";
+import Shopify from "@services/shopify";
 import registerMyWebhooks from "../webhooks/webhooks-registration";
 
 export default async function (req, res) {

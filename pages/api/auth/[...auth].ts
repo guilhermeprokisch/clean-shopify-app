@@ -1,4 +1,4 @@
-import Shopify from "@utils/shopify";
+import Shopify from "@services/shopify";
 
 export default async function (req, res) {
   const authRoute = await Shopify.Auth.beginAuth(

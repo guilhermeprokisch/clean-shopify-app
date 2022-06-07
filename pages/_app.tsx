@@ -1,5 +1,4 @@
-import "../styles/globals.css";
-import ShopifyEmbeddedApp from "@components/ShopifyEmbeddedApp";
+import ShopifyEmbeddedApp from "@contexts/ShopifyEmbeddedApp";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Provider as AppBridgeProvider } from "@shopify/app-bridge-react"
-import SessionProvider from './components/SessionProvider'
-import RoutePropagator from './components/RoutePropagator'
-import CustomPolarisForNextProvider from './components//CustomPolarisForNextProvider'
-import ApolloProvider from './components/ApolloProvider'
+import SessionProvider from './providers/SessionProvider'
+import RoutePropagator from './providers/RoutePropagator'
+import CustomPolarisForNextProvider from './providers//CustomPolarisForNextProvider'
+import ApolloProvider from './providers/ApolloProvider'
 import "@shopify/polaris/build/esm/styles.css"
 
 export default function ShopifyEmbeddedApp({ children }) {
