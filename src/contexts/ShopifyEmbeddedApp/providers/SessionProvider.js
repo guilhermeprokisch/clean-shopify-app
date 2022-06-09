@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import axios from "axios";
 
 export default function SessionProvider({ children }) {
 
@@ -8,9 +7,7 @@ export default function SessionProvider({ children }) {
     const url = new URL(window.location.href);
     let shop = url.searchParams.get("shop");
 
-    const myAxios = axios.create();
-    myAxios
-      .post(`/api/auth/checkSession?shop=${shop}`)
+    fetch(`/api/auth/checkSession?shop=${shop}`)
       .then(function(response) {
         if (response.data.status === "error") {
           console.log("response status is error, going to redirect to install screen");
