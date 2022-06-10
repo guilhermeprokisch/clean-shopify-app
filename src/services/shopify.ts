@@ -1,7 +1,7 @@
 import { Shopify, ApiVersion } from "@shopify/shopify-api";
-import RedisStore from "@services/redis";
+import MongoSessionStore from "@services/mongo";
 
-const sessionStorage = new RedisStore(process.env.REDIS_URL);
+const sessionStorage = new MongoSessionStore();
 const { SHOPIFY_API_KEY, SHOPIFY_API_SECRET, SCOPES, HOST } = process.env;
 
 let context = {

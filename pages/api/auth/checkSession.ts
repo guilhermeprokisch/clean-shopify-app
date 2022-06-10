@@ -1,4 +1,4 @@
-import RedisStore from "@services/redis";
+import MongoSessionStore from "@services/mongo";
 import Shopify from "@shopify/shopify-api";
 
 export default async function (req, res) {
@@ -7,13 +7,13 @@ export default async function (req, res) {
   // console.log("★ session is ", session);
 
   //ask the db directly
-  const sessionStorage = new RedisStore(process.env.REDIS_URL);
+  const sessionStorage = new MongoSessionStore(process.env.REDIS_URL);
 
   let shop = req.query.shop;
   console.log("shop: ", shop);
 
   let token = await sessionStorage.getByShop(shop);
-  console.log("token record from redis: ", token);
+  console.log("token record from store: ", token);
 
   let success = false;
   if (token && token.accessToken) {

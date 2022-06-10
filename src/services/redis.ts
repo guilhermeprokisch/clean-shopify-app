@@ -1,6 +1,6 @@
 import Redis from "ioredis";
 
-export default class RedisStore {
+export default class RedisSessionStore {
   constructor(url) {
     // Create a new redis client
     this.client = new Redis(url);
