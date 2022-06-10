@@ -59,7 +59,9 @@ export default class MongoSessionStore {
      Otherwise, return undefined
   */
   loadCallback = async (id) => {
-    const sessionResult = await SessionModel.findOne({ id });
+    console.log("NOOIS", id);
+    const sessionResult = await SessionModel.findOne({ id: id });
+    console.log("AQUI", sessionResult);
     if (sessionResult.content.length > 0) {
       return JSON.parse(sessionResult.content);
     }

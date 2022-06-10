@@ -12,9 +12,10 @@ import {
   TextContainer,
   Heading,
 } from "@shopify/polaris";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { authenticatedFetch } from "@shopify/app-bridge-utils";
 import { useAppBridge } from "@shopify/app-bridge-react";
+import { Redirect } from "@shopify/app-bridge/actions";
 import Image from "next/image";
 
 // noinspection JSUnusedGlobalSymbols
@@ -22,11 +23,13 @@ export default function Index() {
   const primaryAction = { content: "Settings", url: "/settings" };
   const [products, setProducts] = useState([]);
   const app = useAppBridge();
+  const redirect = Redirect.create(app);
 
   useEffect(() => {
     async function getProducts() {
       const response = await authenticatedFetch(app)("/api/products");
       const { body } = await response.json();
+      console.log(body);
       let data = body.data.products.edges.map((item) => item.node);
       console.log("body.data", data);
       setProducts(data);
@@ -34,22 +37,27 @@ export default function Index() {
     getProducts();
   }, [app]);
 
+  const billingRedirect = async () => {
+    const response = await authenticatedFetch(app)("/api/billing");
+    const { body } = await response.json();
+    let confirmationURL = body.data.appPurchaseOneTimeCreate.confirmationUrl;
+    redirect.dispatch(Redirect.Action.REMOTE, { url: confirmationURL });
+  };
+
   return (
     <Page title="NextJS Shopify App" primaryAction={primaryAction}>
       <Layout>
         <Layout.Section>
           <MediaCard
             title="Welcome to the Shopify NextJS App!"
+            description="It looks like things are setup correctly and you should be able to start developing. "
             primaryAction={{
-              content: "Learn about getting started",
-              url: "https://shopify.dev/concepts/apps",
-              external: true,
+              content: "Billing API",
+              onAction: billingRedirect,
             }}
-            description="It looks like things are setup correctly and you should be able to start developing."
             popoverActions={[
               {
                 content: "Dismiss",
-                onAction: () => {},
               },
             ]}
           >
@@ -65,7 +73,6 @@ export default function Index() {
             />
           </MediaCard>
         </Layout.Section>
-
         <Layout.Section>
           <TextContainer>
             <Heading>A Simple Products List</Heading>
@@ -75,7 +82,6 @@ export default function Index() {
             </p>
           </TextContainer>
         </Layout.Section>
-
         <Layout.Section>
           <Card>
             <ResourceList
@@ -109,7 +115,6 @@ export default function Index() {
             />
           </Card>
         </Layout.Section>
-
         <Layout.Section>
           <FooterHelp>
             For more details on Polaris, visit our{" "}

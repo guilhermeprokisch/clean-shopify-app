@@ -17,6 +17,13 @@ const registerMyWebhooks = async function (shop, accessToken) {
     accessToken,
     commonHandler
   );
+  await registerWebhookAndAddHandler(
+    "APP_PURCHASES_ONE_TIME_UPDATE",
+    shop,
+    accessToken,
+    commonHandler
+  );
+
   //this mandatory gdpr webhooks can not be registered using the library.
   //we declare them in the shopify admin dashboard and handle them here only.
   //https://github.com/Shopify/shopify-node-api/issues/290#issuecomment-1020596034
